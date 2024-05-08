@@ -36,7 +36,7 @@
 	"variables": {
 		"frontendIpId": "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('frontendIp'))]",
 		"location": "[resourceGroup().location]",
-		"fwIlbBePoolName": "[concat(variables('rgname'), '_fw_ilb_backend_pool_', parameters('randomString'))]"
+		"fwelbBePoolName": "[concat(variables('rgname'), '_fw_ilb_backend_pool_', parameters('randomString'))]"
 	},
 
 	"resources": [
@@ -64,7 +64,7 @@
 				],
 				"backendAddressPools": [
 					{
-						"name": "[variables('fwELbBePoolName')]"
+						"name": "[variables('fwelbBePoolName')]"
 					}
 				],
 				"probes": [
@@ -88,7 +88,7 @@
                             "enableTcpReset": false,
                             "idleTimeoutInMinutes": 15,
                             "backendAddressPool": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancerName')), '/backendAddressPools/', parameters('fwELbBePoolName'))]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancerName')), '/backendAddressPools/', variables('fwelbBePoolName'))]"
                             },
                             "frontendIPConfigurations": [
                                 {

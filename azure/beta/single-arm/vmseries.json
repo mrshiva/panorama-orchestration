@@ -212,10 +212,6 @@
                 "metricName": "customMetrics/panGPGWUtilizationActiveTunnels", 
                 "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
             },
-            "Active Sessions": {
-                "metricName": "customMetrics/panSessionActive",
-                "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
-            },
             "Data Plane Packet Buffer Utilization %": {
                 "metricName": "customMetrics/DataPlanePacketBufferUtilization",
                 "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"

@@ -145,36 +145,6 @@
                 "description": "App Insights where custom metrics is hosted"
             }
         },
-        "autoScaleMetric": {
-             "type": "string",
-             "allowedValues": [
-                  "Data Plane CPU Utilization %", 
-                  "GP Gateway Utilization %",
-                  "GP Gateway Active Tunnels",
-                  "Data Plane Packet Buffer Utilization %",
-                  "SSL Proxy Session Utilization %",
-                  "Session Utilization %",
-                  "Available Bytes"                 
-                ], 
-             "defaultValue": "Available Bytes", 
-             "metadata": {
-                 "description": "Select the metric on which auto scale events should be triggered."
-             } 
-        },
-        "scaleInThreshold": {
-            "type": "int",
-            "defaultValue": 2000,
-            "metadata": {
-                "description": "The Threshold below which FW VM scale in kicks in."
-            }
-        },
-        "scaleOutThreshold": {
-            "type": "int",
-            "defaultValue": 32000,
-            "metadata": {
-                "description": "The Threshold above which FW VM scale out kicks in."
-            }
-        },
         "guidValue": {
             "type": "string",
             "defaultValue": "[newGuid()]"
@@ -293,75 +263,7 @@
                     }
                 }
             }
-        },
-        {
-            "type": "microsoft.insights/autoscalesettings",
-            "name": "[variables('autoscaleName')]",
-            "apiVersion": "2014-04-01",
-            "location": "[resourceGroup().location]",
-            "tags": {
-                "PanoramaManaged": "Yes"
-            },
-            "scale": null,
-            "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachineScaleSets', parameters('vmssName'))]"
-            ],
-            "properties": {
-                "profiles": [
-                    {
-                        "name": "Auto created scale condition",
-                        "capacity": {
-                            "default": "[parameters('vmScaleSetMinCount')]", 
-                            "maximum": "[parameters('vmScaleSetMaxCount')]", 
-                            "minimum": "[parameters('vmScaleSetMinCount')]"
-                        },
-                        "rules": [
-                            {
-                                "metricTrigger": {
-                                    "metricName": "[variables('scaleMetricMap')[parameters('autoScaleMetric')].metricName]", 
-                                    "metricNamespace": "",
-                                    "metricResourceUri": "[variables('scaleMetricMap')[parameters('autoScaleMetric')].metricResourceUri]",
-                                    "timeGrain": "PT1M",
-                                    "statistic": "Average",
-                                    "timeWindow": "PT5M",
-                                    "timeAggregation": "Average",
-                                    "operator": "GreaterThan",
-                                    "threshold": "[parameters('scaleOutThreshold')]"
-                                },
-                                "scaleAction": {
-                                    "direction": "Increase",
-                                    "type": "ChangeCount",
-                                    "value": "1",
-                                    "cooldown": "PT5M"
-                                }
-                            },
-                            {
-                                "metricTrigger": {
-                                    "metricName": "[variables('scaleMetricMap')[parameters('autoScaleMetric')].metricName]",
-                                    "metricNamespace": "",
-                                    "metricResourceUri": "[variables('scaleMetricMap')[parameters('autoScaleMetric')].metricResourceUri]",
-                                    "operator": "LessThan",
-                                    "statistic": "Average",
-                                    "threshold": "[parameters('scaleInThreshold')]",
-                                    "timeAggregation": "Average",
-                                    "timeGrain": "PT1M",
-                                    "timeWindow": "PT10M"
-                                },
-                                "scaleAction": {
-                                    "direction": "Decrease",
-                                    "type": "ChangeCount",
-                                    "value": "1",
-                                    "cooldown": "PT5M"
-                                }
-                            }
-                        ]
-                    }
-                ],
-                "notifications": [],
-            "enabled": true,
-            "targetResourceUri": "[resourceId('Microsoft.Compute/virtualMachineScaleSets', parameters('vmssName'))]"
-        }
-    }],
+        }],
     "outputs": {
     }
 }

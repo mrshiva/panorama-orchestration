@@ -25,12 +25,6 @@
 				"description": "IP Address of the inbound load balancer in the Trust network"
 			}
 		},
-		"fwELbBePoolName": {
-			"type": "string",
-			"metadata": {
-				"description": "Backend pool name of the load balancer"
-			}
-		},
         "randomString": {
             "type": "string",
             "metadata": {

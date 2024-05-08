@@ -34,6 +34,7 @@
 	},
 
 	"variables": {
+		"rgname" : "[resourceGroup().name]",
 		"frontendIpId": "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('frontendIp'))]",
 		"location": "[resourceGroup().location]",
 		"fwelbBePoolName": "[concat(variables('rgname'), '_fw_ilb_backend_pool_', parameters('randomString'))]"

@@ -30,12 +30,19 @@
 			"metadata": {
 				"description": "Backend pool name of the load balancer"
 			}
-		}
+		},
+        "randomString": {
+            "type": "string",
+            "metadata": {
+                "description": "random string for resource naming."
+            }
+        }
 	},
 
 	"variables": {
 		"frontendIpId": "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('frontendIp'))]",
-		"location": "[resourceGroup().location]"
+		"location": "[resourceGroup().location]",
+		"fwIlbBePoolName": "[concat(variables('rgname'), '_fw_ilb_backend_pool_', parameters('randomString'))]"
 	},
 
 	"resources": [
@@ -63,7 +70,7 @@
 				],
 				"backendAddressPools": [
 					{
-						"name": "[parameters('fwELbBePoolName')]"
+						"name": "[variables('fwELbBePoolName')]"
 					}
 				],
 				"probes": [

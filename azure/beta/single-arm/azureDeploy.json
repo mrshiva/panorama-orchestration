@@ -428,9 +428,6 @@
                     "appInsightsName": {
                         "value": "[parameters('appInsightsName')]"
                     },
-                    "autoScaleMetric": {
-                        "value": "[parameters('autoScaleMetric')]"
-                    },
                     "scaleInThreshold": {
                         "value": "[parameters('scaleInThreshold')]"
                     },

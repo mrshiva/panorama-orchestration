@@ -428,12 +428,6 @@
                     "appInsightsName": {
                         "value": "[parameters('appInsightsName')]"
                     },
-                    "scaleInThreshold": {
-                        "value": "[parameters('scaleInThreshold')]"
-                    },
-                    "scaleOutThreshold": {
-                        "value": "[parameters('scaleOutThreshold')]"
-                    },
                     "randomString" : {
                         "value" : "[parameters('randomString')]"
                     }

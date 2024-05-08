@@ -153,9 +153,10 @@
                   "GP Gateway Active Tunnels",
                   "Data Plane Packet Buffer Utilization %",
                   "SSL Proxy Session Utilization %",
-                  "Session Utilization %"                  
+                  "Session Utilization %",
+                  "Available Bytes"                 
                 ], 
-             "defaultValue": "GP Gateway Active Tunnels", 
+             "defaultValue": "Available Bytes", 
              "metadata": {
                  "description": "Select the metric on which auto scale events should be triggered."
              } 
@@ -198,32 +199,7 @@
         "tempMgmtSubnetID" : "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetNameMgmt'))]",
         "tempDataSubnetID" : "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetNameData'))]",
         "resourceGroupName": "[resourceGroup().name]",
-        "scaleMetricMap": {
-            "Data Plane CPU Utilization %": {
-                "metricName": "customMetrics/DataPlaneCPUUtilizationPct", 
-                "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
-            }, 
-            "GP Gateway Utilization %": {
-                "metricName": "customMetrics/panGPGatewayUtilizationPct",
-                "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
-            }, 
-            "GP Gateway Active Tunnels": {
-                "metricName": "customMetrics/panGPGWUtilizationActiveTunnels", 
-                "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
-            },
-            "Data Plane Packet Buffer Utilization %": {
-                "metricName": "customMetrics/DataPlanePacketBufferUtilization",
-                "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
-
-            },
-            "SSL Proxy Session Utilization %": {
-                "metricName": "customMetrics/panSessionSslProxyUtilization", 
-                "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
-            },
-            "Session Utilization %": {
-                "metricName": "customMetrics/panSessionUtilization", 
-                "metricResourceUri": "[resourceId(variables('resourceGroupName'), 'Microsoft.Insights/components', parameters('appInsightsName'))]"
-            }        
+        "scaleMetricMap": {     
         }
     },
     "resources": [
